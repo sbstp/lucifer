@@ -31,4 +31,4 @@ Configuration:
 ```
 Examples:
 
-* (qbittorrent-nox)[examples/qbittorrent.json]
+* [qbittorrent-nox](examples/qbittorrent.json)
