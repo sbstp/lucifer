@@ -1,3 +1,5 @@
+var PATH = '/path/to/lucifer.json';
+
 var spawn = require('child_process').spawn
   , fs = require('fs')
   , util = require('util');
@@ -130,7 +132,7 @@ var Process = function (name, conf) {
   };
 };
 
-var config = require('/path/to/lucifer.json');
+var config = require(PATH);
 
 var names = Object.keys(config);
 
