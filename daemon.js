@@ -117,7 +117,7 @@ var Process = function (name, conf) {
    * Wrapper around util.format that logs to the
    * console and the logfile.
    */
-  self.log = function (str) {
+  self.log = function () {
     var formatted = self.name + ' : ' + util.format.apply(null, arguments);
 
     if (self.console) {
