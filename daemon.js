@@ -81,7 +81,7 @@ var Process = function (name, conf) {
    * Callback for when the child process exists.
    */
   self.onExit = function (code, signal) {
-    self.log('Process %d exited.', self.pid);
+    self.log('Process %d exited with (%d, %s).', self.pid, code, signal);
     if (self.restart) {
       self.log('Restarting.');
       self.start();
@@ -93,9 +93,9 @@ var Process = function (name, conf) {
    */
   self.onClose = function () {
     if (!self.restart) {
-      self.logfilefd.close();
-      self.stdoutfd.close();
-      self.stderrfd.close();
+      if (self.logfilefd) self.logfilefd.close();
+      if (self.stdoutfd) self.stdoutfd.close();
+      if (self.stderrfd) self.stderrfd.close();
     }
   };
 
@@ -117,14 +117,17 @@ var Process = function (name, conf) {
    * Wrapper around util.format that logs to the
    * console and the logfile.
    */
-  self.log = function (str, args) {
-    var formatted = self.name + ' : ' + util.format(str, args);
+  self.log = function (str) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    args.unshift(str);
+
+    var formatted = self.name + ' : ' + util.format.apply(null, args);
 
     if (self.console) {
       console.log(formatted);
     }
 
-    if (self.logfile) {
+    if (self.logfilefd) {
       self.logfilefd.write(formatted + '\n');
     }
   };
