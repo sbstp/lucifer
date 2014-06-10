@@ -118,10 +118,7 @@ var Process = function (name, conf) {
    * console and the logfile.
    */
   self.log = function (str) {
-    var args = Array.prototype.slice.call(arguments, 1);
-    args.unshift(str);
-
-    var formatted = self.name + ' : ' + util.format.apply(null, args);
+    var formatted = self.name + ' : ' + util.format.apply(null, arguments);
 
     if (self.console) {
       console.log(formatted);
