@@ -1,0 +1,16 @@
+{
+  "qbittorrent": {
+    "cmd": "/usr/bin/qbittorrent-nox",
+    "logfile": "/home/simon/qbittorrent.log",
+    "stdout": "/home/simon/qbittorrent.out",
+    "stderr": "/home/simon/qbittorrent.err",
+    "pidfile": "/home/simon/qbittorrent.pid",
+    "restart": true,
+    "uid": 1000,
+    "gid": 1000,
+    "env": {
+      "USER": "simon",
+      "HOME": "/home/simon"
+    }
+  }
+}
