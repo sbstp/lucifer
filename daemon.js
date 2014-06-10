@@ -26,6 +26,7 @@ var Process = function (name, conf) {
   self.pidfile = conf.pidfile;
   self.uid = conf.uid;
   self.gid = conf.gid;
+  self.env = conf.env;
   self.console = conf.console;
   self.restart = conf.restart;
 
@@ -49,7 +50,8 @@ var Process = function (name, conf) {
       cwd: self.cwd,
       detached: false,
       uid: self.uid,
-      gid: self.gid
+      gid: self.gid,
+      env: self.env
     });
 
     self.handle.on('error', self.onError);
